@@ -2,6 +2,7 @@ package bowling.domain;
 
 import bowling.dto.PlayResult;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -49,6 +50,6 @@ public class Players {
     public List<PlayResult> playResults() {
         return players.stream()
                 .map(Player::playResult)
-                .collect(Collectors.toList());
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 }
